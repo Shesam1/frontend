@@ -26,6 +26,10 @@ object CampaignAgent extends Logging {
     if (Targeting.isSwitchedOn) {
       Configuration.targeting.campaignsUrl.map(url => {
         CampaignCache.fetch(url, campaignLimit, Some(ruleLimit), Some(tagLimit))
+          .map(x => {
+            x.campaigns.foreach(x => if(x.id == "530826e6-1728-4ed6-8af3-9b676dea63fe") println(x.rules))
+            x
+          })
           .flatMap(agent.alter).map(_ => ())
       }).getOrElse(Future.failed(new BadConfigurationException("Campaigns URL not configured")))
     } else {

@@ -81,7 +81,6 @@ final case class Content(
   lazy val isImmersive = fields.displayHint.contains("immersive") || isGallery || tags.isTheMinuteArticle || isPhotoEssay
   lazy val isPaidContent: Boolean = tags.tags.exists{ tag => tag.id == "tone/advertisement-features" }
   lazy val campaigns: List[Campaign] = _root_.commercial.targeting.CampaignAgent.getCampaignsForTags(tags.tags.map(_.id))
-
   lazy val isAmpSupportedArticleType: Boolean = (tags.isArticle && !tags.isLiveBlog) && !isImmersive && !tags.isQuiz
 
   lazy val shouldAmplify: Boolean = {

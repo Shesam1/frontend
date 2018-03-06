@@ -590,7 +590,12 @@ class GuardianConfiguration extends Logging {
 
   object formstack {
     lazy val url = configuration.getMandatoryStringProperty("formstack.url")
-    lazy val oAuthToken = configuration.getMandatoryStringProperty("formstack.oauthToken")
+    object identity {
+      lazy val oAuthToken = configuration.getMandatoryStringProperty("formstack.identity.oauthToken")
+    }
+    object editorial {
+      lazy val oAuthToken = configuration.getMandatoryStringProperty("formstack.editorial.oauthToken")
+    }
   }
 
   object standalone {
